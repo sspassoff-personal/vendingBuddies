@@ -1,12 +1,12 @@
 using System.Diagnostics;
 using System.Security.Policy;
 using static System.Windows.Forms.LinkLabel;
-using static VendingBuddiesProject.Form1;
+using static VendingBuddiesProject.VendingMachine;
 using System.Collections.Generic;
 
 namespace VendingBuddiesProject
 {
-    public partial class Form1 : Form
+    public partial class VendingMachine : Form
     {
         /********* Local Globals ***********/
         double snackTotal = 0.0;
@@ -27,7 +27,7 @@ namespace VendingBuddiesProject
 
         IDictionary<string, int> snackNameCounts = new Dictionary<string, int>();
 
-        public Form1()
+        public VendingMachine()
         {
             InitializeComponent();
 

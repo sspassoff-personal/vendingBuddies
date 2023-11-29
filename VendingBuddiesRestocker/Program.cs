@@ -1,4 +1,4 @@
-namespace VendingBuddiesProject
+namespace VendingBuddiesRestocker
 {
     internal static class Program
     {
@@ -11,7 +11,7 @@ namespace VendingBuddiesProject
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new VendingMachine());
+            Application.Run(new Restocker());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace VendingBuddiesProject
 {
-    partial class Form1
+    partial class VendingMachine
     {
         /// <summary>
         ///  Required designer variable.
