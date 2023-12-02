@@ -450,17 +450,24 @@ namespace ManagementSystem
         {
             GenerateReport();
             DateTime nowTime = new DateTime();
-            // Define the path where the file will be saved
-            // This example uses the user's desktop - you can change it as needed
-            string desktopPath = @"C:\Users\stani\Documents\VendingMachine\RestockerNotes" + nowTime.Month.ToString() + "." +
-                nowTime.Day.ToString() + ".txt";
-            //string filePath = Path.Combine(desktopPath, "output.txt");
+
+            // Write to a file
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string vendingMachineFolder = Path.Combine(folderPath, "VendingMachine");
+            string fileName = locationText.Text + nowTime.Month.ToString() + nowTime.Day.ToString() + ".txt";
+            string filePath = Path.Combine(vendingMachineFolder, fileName);
+
+            // Ensure the VendingMachine directory exists
+            if (!Directory.Exists(vendingMachineFolder))
+            {
+                Directory.CreateDirectory(vendingMachineFolder);
+            }
 
             // Get the text from the TextBox
             string textToWrite = notesRestocker.Text;
 
             // Write the text to a file
-            File.WriteAllText(desktopPath, textToWrite);
+            File.WriteAllText(filePath, textToWrite);
 
         }
 
