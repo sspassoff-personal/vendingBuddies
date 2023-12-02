@@ -55,7 +55,7 @@
             cash = new Button();
             creditCard = new Button();
             cancelOrder = new Button();
-            change = new ListBox();
+            cashChange = new ListBox();
             three = new Button();
             totalPrice = new ListBox();
             thirtythree = new Button();
@@ -154,6 +154,7 @@
             thirteen.TabIndex = 7;
             thirteen.Text = "button2";
             thirteen.UseVisualStyleBackColor = true;
+            thirteen.Click += thirteen_Click;
             // 
             // fourteen
             // 
@@ -163,6 +164,7 @@
             fourteen.TabIndex = 8;
             fourteen.Text = "button2";
             fourteen.UseVisualStyleBackColor = true;
+            fourteen.Click += fourteen_Click;
             // 
             // twelve
             // 
@@ -192,6 +194,7 @@
             eighteen.TabIndex = 11;
             eighteen.Text = "button2";
             eighteen.UseVisualStyleBackColor = true;
+            eighteen.Click += eighteen_Click;
             // 
             // nineteen
             // 
@@ -201,6 +204,7 @@
             nineteen.TabIndex = 12;
             nineteen.Text = "button2";
             nineteen.UseVisualStyleBackColor = true;
+            nineteen.Click += nineteen_Click;
             // 
             // seventeen
             // 
@@ -210,6 +214,7 @@
             seventeen.TabIndex = 13;
             seventeen.Text = "button2";
             seventeen.UseVisualStyleBackColor = true;
+            seventeen.Click += seventeen_Click;
             // 
             // sixteen
             // 
@@ -219,6 +224,7 @@
             sixteen.TabIndex = 10;
             sixteen.Text = "button16";
             sixteen.UseVisualStyleBackColor = true;
+            sixteen.Click += sixteen_Click;
             // 
             // twentythree
             // 
@@ -228,6 +234,7 @@
             twentythree.TabIndex = 15;
             twentythree.Text = "button2";
             twentythree.UseVisualStyleBackColor = true;
+            twentythree.Click += twentythree_Click;
             // 
             // twentyfour
             // 
@@ -237,6 +244,7 @@
             twentyfour.TabIndex = 16;
             twentyfour.Text = "button2";
             twentyfour.UseVisualStyleBackColor = true;
+            twentyfour.Click += twentyfour_Click;
             // 
             // twentytwo
             // 
@@ -246,6 +254,7 @@
             twentytwo.TabIndex = 17;
             twentytwo.Text = "button2";
             twentytwo.UseVisualStyleBackColor = true;
+            twentytwo.Click += twentytwo_Click;
             // 
             // twentyone
             // 
@@ -255,6 +264,7 @@
             twentyone.TabIndex = 14;
             twentyone.Text = "button20";
             twentyone.UseVisualStyleBackColor = true;
+            twentyone.Click += twentyone_Click;
             // 
             // twentyeight
             // 
@@ -264,6 +274,7 @@
             twentyeight.TabIndex = 19;
             twentyeight.Text = "button2";
             twentyeight.UseVisualStyleBackColor = true;
+            twentyeight.Click += twentyeight_Click;
             // 
             // twentynine
             // 
@@ -273,6 +284,7 @@
             twentynine.TabIndex = 20;
             twentynine.Text = "button2";
             twentynine.UseVisualStyleBackColor = true;
+            twentynine.Click += twentynine_Click;
             // 
             // twentyseven
             // 
@@ -282,6 +294,7 @@
             twentyseven.TabIndex = 21;
             twentyseven.Text = "button2";
             twentyseven.UseVisualStyleBackColor = true;
+            twentyseven.Click += twentyseven_Click;
             // 
             // twentysix
             // 
@@ -291,6 +304,7 @@
             twentysix.TabIndex = 18;
             twentysix.Text = "button24";
             twentysix.UseVisualStyleBackColor = true;
+            twentysix.Click += twentysix_Click;
             // 
             // itemsPrice
             // 
@@ -310,6 +324,7 @@
             cash.TabIndex = 23;
             cash.Text = "Cash";
             cash.UseVisualStyleBackColor = true;
+            cash.Click += cash_Click;
             // 
             // creditCard
             // 
@@ -331,14 +346,14 @@
             cancelOrder.UseVisualStyleBackColor = true;
             cancelOrder.Click += cancelOrder_Click;
             // 
-            // change
+            // cashChange
             // 
-            change.FormattingEnabled = true;
-            change.ItemHeight = 15;
-            change.Location = new Point(666, 350);
-            change.Name = "change";
-            change.Size = new Size(131, 34);
-            change.TabIndex = 26;
+            cashChange.FormattingEnabled = true;
+            cashChange.ItemHeight = 15;
+            cashChange.Location = new Point(666, 350);
+            cashChange.Name = "cashChange";
+            cashChange.Size = new Size(131, 34);
+            cashChange.TabIndex = 26;
             // 
             // three
             // 
@@ -368,6 +383,7 @@
             thirtythree.TabIndex = 30;
             thirtythree.Text = "button2";
             thirtythree.UseVisualStyleBackColor = true;
+            thirtythree.Click += thirtythree_Click;
             // 
             // thirtyfour
             // 
@@ -377,6 +393,7 @@
             thirtyfour.TabIndex = 31;
             thirtyfour.Text = "button2";
             thirtyfour.UseVisualStyleBackColor = true;
+            thirtyfour.Click += thirtyfour_Click;
             // 
             // thirtytwo
             // 
@@ -386,6 +403,7 @@
             thirtytwo.TabIndex = 32;
             thirtytwo.Text = "button2";
             thirtytwo.UseVisualStyleBackColor = true;
+            thirtytwo.Click += thirtytwo_Click;
             // 
             // thirtyone
             // 
@@ -395,6 +413,7 @@
             thirtyone.TabIndex = 29;
             thirtyone.Text = "button4";
             thirtyone.UseVisualStyleBackColor = true;
+            thirtyone.Click += thirtyone_Click;
             // 
             // thirtyeight
             // 
@@ -404,6 +423,7 @@
             thirtyeight.TabIndex = 34;
             thirtyeight.Text = "button2";
             thirtyeight.UseVisualStyleBackColor = true;
+            thirtyeight.Click += thirtyeight_Click;
             // 
             // thirtynine
             // 
@@ -413,6 +433,7 @@
             thirtynine.TabIndex = 35;
             thirtynine.Text = "button2";
             thirtynine.UseVisualStyleBackColor = true;
+            thirtynine.Click += thirtynine_Click;
             // 
             // thirtyseven
             // 
@@ -422,6 +443,7 @@
             thirtyseven.TabIndex = 36;
             thirtyseven.Text = "button2";
             thirtyseven.UseVisualStyleBackColor = true;
+            thirtyseven.Click += thirtyseven_Click;
             // 
             // thirtysix
             // 
@@ -431,6 +453,7 @@
             thirtysix.TabIndex = 33;
             thirtysix.Text = "button8";
             thirtysix.UseVisualStyleBackColor = true;
+            thirtysix.Click += thirtysix_Click;
             // 
             // five
             // 
@@ -440,6 +463,7 @@
             five.TabIndex = 37;
             five.Text = "Sun Chips";
             five.UseVisualStyleBackColor = true;
+            five.Click += five_Click;
             // 
             // ten
             // 
@@ -449,6 +473,7 @@
             ten.TabIndex = 38;
             ten.Text = "Sun Chips";
             ten.UseVisualStyleBackColor = true;
+            ten.Click += ten_Click;
             // 
             // fifteen
             // 
@@ -458,6 +483,7 @@
             fifteen.TabIndex = 39;
             fifteen.Text = "Sun Chips";
             fifteen.UseVisualStyleBackColor = true;
+            fifteen.Click += fifteen_Click;
             // 
             // twenty
             // 
@@ -467,6 +493,7 @@
             twenty.TabIndex = 40;
             twenty.Text = "Sun Chips";
             twenty.UseVisualStyleBackColor = true;
+            twenty.Click += twenty_Click;
             // 
             // twentyfive
             // 
@@ -476,6 +503,7 @@
             twentyfive.TabIndex = 41;
             twentyfive.Text = "Sun Chips";
             twentyfive.UseVisualStyleBackColor = true;
+            twentyfive.Click += twentyfive_Click;
             // 
             // thirty
             // 
@@ -485,6 +513,7 @@
             thirty.TabIndex = 42;
             thirty.Text = "Sun Chips";
             thirty.UseVisualStyleBackColor = true;
+            thirty.Click += thirty_Click;
             // 
             // thirtyfive
             // 
@@ -494,6 +523,7 @@
             thirtyfive.TabIndex = 43;
             thirtyfive.Text = "Sun Chips";
             thirtyfive.UseVisualStyleBackColor = true;
+            thirtyfive.Click += thirtyfive_Click;
             // 
             // fourty
             // 
@@ -503,8 +533,9 @@
             fourty.TabIndex = 44;
             fourty.Text = "Sun Chips";
             fourty.UseVisualStyleBackColor = true;
+            fourty.Click += fourty_Click;
             // 
-            // Form1
+            // VendingMachine
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -527,7 +558,7 @@
             Controls.Add(thirtyone);
             Controls.Add(totalPrice);
             Controls.Add(three);
-            Controls.Add(change);
+            Controls.Add(cashChange);
             Controls.Add(cancelOrder);
             Controls.Add(creditCard);
             Controls.Add(cash);
@@ -555,7 +586,7 @@
             Controls.Add(four);
             Controls.Add(two);
             Controls.Add(one);
-            Name = "Form1";
+            Name = "VendingMachine";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
@@ -590,7 +621,7 @@
         private Button cash;
         private Button creditCard;
         private Button cancelOrder;
-        private ListBox change;
+        private ListBox cashChange;
         private Button three;
         private ListBox totalPrice;
         private Button thirtythree;

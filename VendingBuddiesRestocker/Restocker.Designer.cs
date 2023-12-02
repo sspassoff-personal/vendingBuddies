@@ -68,6 +68,7 @@
             snack33 = new ListBox();
             snack34 = new ListBox();
             snack35 = new ListBox();
+            managementNotes = new ListBox();
             SuspendLayout();
             // 
             // snack1
@@ -430,11 +431,22 @@
             snack35.Size = new Size(185, 64);
             snack35.TabIndex = 78;
             // 
+            // managementNotes
+            // 
+            managementNotes.FormattingEnabled = true;
+            managementNotes.ItemHeight = 15;
+            managementNotes.Location = new Point(12, 581);
+            managementNotes.Name = "managementNotes";
+            managementNotes.Size = new Size(907, 64);
+            managementNotes.TabIndex = 88;
+            managementNotes.SelectedIndexChanged += managementNotes_SelectedIndexChanged;
+            // 
             // Restocker
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(945, 593);
+            ClientSize = new Size(945, 668);
+            Controls.Add(managementNotes);
             Controls.Add(snack36);
             Controls.Add(snack37);
             Controls.Add(snack38);
@@ -522,5 +534,6 @@
         private ListBox snack33;
         private ListBox snack34;
         private ListBox snack35;
+        private ListBox managementNotes;
     }
 }

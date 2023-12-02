@@ -6,6 +6,8 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace VendingBuddiesRestocker
 {
@@ -18,6 +20,7 @@ namespace VendingBuddiesRestocker
 
             loadCorporateFile();
         }
+        public string locationVendingMachine;
 
         public void loadCorporateFile()
         {
@@ -26,6 +29,7 @@ namespace VendingBuddiesRestocker
             if (openSnackText.ShowDialog() == DialogResult.OK)
             {
                 string snacksTxt = openSnackText.FileName;
+
                 try
                 {
                     string[] lines = File.ReadAllLines(snacksTxt);
@@ -36,7 +40,6 @@ namespace VendingBuddiesRestocker
                         words.AddRange(line.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
                     }
 
-                    //MessageBox.Show(Convert.ToString(words.Count()));
                     // Create an array to store processed words
                     string[] snackDetails = new string[words.Count];
 
@@ -58,24 +61,29 @@ namespace VendingBuddiesRestocker
                 }
 
             }
+
+            // Prompt User to Choose File
+            OpenFileDialog openSnackManageText = new OpenFileDialog();
+            if (openSnackManageText.ShowDialog() == DialogResult.OK)
+            {
+                string snacksTxtManage = openSnackManageText.FileName;
+                string[] lines = File.ReadAllLines(snacksTxtManage);
+
+                foreach (string line in lines)
+                {
+                    managementNotes.Items.Add(line);
+                }
+            }
         }
 
         // 0 - 39 Snack Names / 40 - 119 (Expired/Recalled/Good):Quantity / 120 - 159 Quantity to Restock
         public void processSnackDetails(string[] snackDetail)
         {
-            /*
-            MessageBox.Show(Convert.ToString(snackDetail[0]));
-            MessageBox.Show(Convert.ToString(snackDetail[39]));
-            MessageBox.Show(Convert.ToString(snackDetail[40]));
-            MessageBox.Show(Convert.ToString(snackDetail[119]));
-            MessageBox.Show(Convert.ToString(snackDetail[120]));
-            MessageBox.Show(Convert.ToString(snackDetail[159]));
-            MessageBox.Show(Convert.ToString(snackDetail[160]));
-            MessageBox.Show(Convert.ToString(snackDetail[199]));
-            */
+
             int j = 0;
+
             // Add all the Snack names to the list boxes
-            for (int i = 0; i < 40; i++, j++)
+            for (int i = 1; i < 41; i++, j++)
             {
                 string listBoxName = "snack" + (j + 1).ToString();
                 ListBox listBox = this.GetType().GetField(listBoxName, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)?.GetValue(this) as ListBox;
@@ -85,7 +93,7 @@ namespace VendingBuddiesRestocker
             // Reset j
             j = 0;
             // Add all the number of items needed to remove if expired
-            for (int i = 40; i < 120; i++, j++)
+            for (int i = 41; i < 121; i++, j++)
             {
                 string listBoxName = "snack" + (j + 1).ToString();
                 ListBox listBox = this.GetType().GetField(listBoxName, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)?.GetValue(this) as ListBox;
@@ -93,12 +101,16 @@ namespace VendingBuddiesRestocker
                 {
                     if (Convert.ToString(snackDetail[i]) == "Expired")
                     {
-                        listBox.Items.Add("Expired Items to Remove: " + Convert.ToString(snackDetail[++i]));
+                        listBox.Items.Add("Expired Please Remove");
 
+                    }
+                    else if (Convert.ToString(snackDetail[i]) == "Recalled")
+                    {
+                        listBox.Items.Add("Recalled Please Remove");
                     }
                     else
                     {
-                        listBox.Items.Add("Expired Items to Remove: " + Convert.ToString(snackDetail[++i]));
+                        listBox.Items.Add("Good");
                     }
                 }
             }
@@ -122,46 +134,45 @@ namespace VendingBuddiesRestocker
         //Create the textfile to load for the vending machine
         public void vendingMachineFileCreate(string[] snackDetail)
         {
-            string filePath = @"C:\Users\stani\Desktop\VendingBuddies\VendingMachine.txt"; // Specify the file path
+            string filePath = @"C:\Users\stani\Documents\VendingMachine\VendingMachine.txt"; // Specify the file path
             string[] lines = { "First line", "Second line", "Third line" }; // Example string array
             try
             {
-                // Check if the file exists
                 if (File.Exists(filePath))
                 {
-                    // Delete the file
                     File.Delete(filePath);
                 }
-                else
+
+                // Append text to the existing file or create a new file
+                using (StreamWriter sw = File.AppendText(filePath))
                 {
-                    // Append text to the existing file or create a new file
-                    using (StreamWriter sw = File.AppendText(filePath))
+                    sw.WriteLine(snackDetail[0]);
+
+                    // Add Each Snack Name
+                    for (int i = 1; i < 41; i++)
                     {
-                        // Add Each Snack Name
-                        for (int i = 0; i < 40; i++)
-                        {
-                            sw.WriteLine(snackDetail[i]);
-                        }
-
-                        // Default price for right now
-                        for (int i = 0; i < 40; i++)
-                        {
-                            sw.WriteLine(1.5);
-                        }
-
-                        // Default full quantity
-                        for (int i = 0; i < 40; i++)
-                        {
-                            sw.WriteLine(15);
-                        }
-
-                        // Append Expiration Dates
-                        for (int i = 160; i < 200; i++)
-                        {
-                            sw.WriteLine(snackDetail[i]);
-                        }
+                        sw.WriteLine(snackDetail[i]);
                     }
-                }              
+
+                    // Default price for right now
+                    for (int i = 0; i < 40; i++)
+                    {
+                        sw.WriteLine(1.5);
+                    }
+
+                    // Default full quantity
+                    for (int i = 0; i < 40; i++)
+                    {
+                        sw.WriteLine(15);
+                    }
+
+                    // Append Expiration Dates
+                    for (int i = 0; i < 40; i++)
+                    {
+                        sw.WriteLine("12.04.2023");
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -173,6 +184,11 @@ namespace VendingBuddiesRestocker
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void managementNotes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
