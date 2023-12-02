@@ -142,8 +142,10 @@ namespace VendingBuddiesRestocker
         //Create the textfile to load for the vending machine
         public void vendingMachineFileCreate(string[] snackDetail)
         {
-            string filePath = @"C:\Users\stani\Documents\VendingMachine\VendingMachine.txt"; // Specify the file path
-            string[] lines = { "First line", "Second line", "Third line" }; // Example string array
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string filePath = Path.Combine(folderPath, "VendingMachine", "VendingMachine.txt");
+            // Ensure the VendingMachine directory exists
+            
             try
             {
                 if (File.Exists(filePath))

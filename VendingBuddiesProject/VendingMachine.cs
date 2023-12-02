@@ -12,9 +12,14 @@ namespace VendingBuddiesProject
     {
         /********* Local Globals ***********/
         double snackTotal = 0.0;
-        string docPath = @"C:\Users\stani\Documents\VendingMachine\VendingMachine.txt";
         string filePath = "";
         double totalAmount;
+        string vendingMachineDirectory;
+        string folderPath = "";
+        string filePath2 = "";
+
+
+
         class Snacks
         {
             public string[] items = new string[40];
@@ -31,20 +36,31 @@ namespace VendingBuddiesProject
         {
             InitializeComponent();
 
+            folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            filePath = Path.Combine(folderPath, "VendingMachine", "VendingMachine.txt");
+
+            // Ensure the VendingMachine directory exists
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
             loadItemsFile();
 
+            filePath2 = Path.Combine(folderPath, "VendingMachine");
             // Initialize File for Items and Prices with Date Time
             DateTime nowTime = new DateTime();
             if (nowTime != null) { nowTime = System.DateTime.Now; }
-            filePath = docPath + "-" + nowTime.Hour.ToString()
-                + nowTime.Minute.ToString() + nowTime.Second.ToString() + ".txt";
+            string fileName = $"VendingMachine-{nowTime:yyyyMMdd-HHmmss}.txt";
+            filePath2 = Path.Combine(filePath2, fileName);
+            //filePath2 = Path.Combine(filePath, fileName);
         }
 
         string location;
         public void loadItemsFile()
         {
             // Prompt User to Choose File
-            using (StreamReader snacksTxt = new StreamReader(docPath))
+            using (StreamReader snacksTxt = new StreamReader(filePath))
             {
 
                 if (snacksTxt != null)
@@ -148,7 +164,7 @@ namespace VendingBuddiesProject
         /// *************************************************************************************
         public void updatePrice(string itemName, double price, bool itemAvailable)
         {
-            StreamWriter fileXfer = File.AppendText(filePath);
+            StreamWriter fileXfer = File.AppendText(filePath2);
             string line = "";
 
             if (itemAvailable)

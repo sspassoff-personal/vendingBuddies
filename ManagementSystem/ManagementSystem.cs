@@ -363,8 +363,16 @@ namespace ManagementSystem
 
             DateTime nowTime = new DateTime();
             // Write to a file
-            string filePath = @"C:\Users\stani\Documents\VendingMachine\" + locationText.Text + nowTime.Month.ToString() +
-                nowTime.Day.ToString() + ".txt";
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            string vendingMachineFolder = Path.Combine(folderPath, "VendingMachine");
+            string fileName = locationText.Text + nowTime.Month.ToString() + nowTime.Day.ToString() + ".txt";
+            string filePath = Path.Combine(vendingMachineFolder, fileName);
+
+            // Ensure the VendingMachine directory exists
+            if (!Directory.Exists(vendingMachineFolder))
+            {
+                Directory.CreateDirectory(vendingMachineFolder);
+            }
             File.WriteAllText(filePath, reportContent.ToString());
 
 
