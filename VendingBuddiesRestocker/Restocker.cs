@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Windows.Forms.VisualStyles;
 
 namespace VendingBuddiesRestocker
 {
@@ -21,6 +22,7 @@ namespace VendingBuddiesRestocker
             loadCorporateFile();
         }
         public string locationVendingMachine;
+        public string[] pricesList = new string[40];
 
         public void loadCorporateFile()
         {
@@ -118,11 +120,17 @@ namespace VendingBuddiesRestocker
             // Reset j
             j = 0;
             // Add the quantity to restock
-            for (int i = 120; i < 160; i++, j++)
+            for (int i = 121; i < 161; i++, j++)
             {
                 string listBoxName = "snack" + (j + 1).ToString();
                 ListBox listBox = this.GetType().GetField(listBoxName, BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public)?.GetValue(this) as ListBox;
                 listBox.Items.Add("Restock Amount: " + snackDetail[i]);
+            }
+
+            int k = 0;
+            for (int i = 161; i < 201; i++, k++)
+            {
+                pricesList[k] = snackDetail[i];
             }
 
 
@@ -157,7 +165,7 @@ namespace VendingBuddiesRestocker
                     // Default price for right now
                     for (int i = 0; i < 40; i++)
                     {
-                        sw.WriteLine(1.5);
+                        sw.WriteLine(pricesList[i]);
                     }
 
                     // Default full quantity

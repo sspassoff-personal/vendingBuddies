@@ -344,6 +344,7 @@ namespace ManagementSystem
             {
                 // Read quantity
                 string quantity = ReadTextBoxValue("quantity" + (i + 1));
+                quantity = checkRestockAmount(quantity);
                 reportContent.Append(quantity + ",");
             }
 
@@ -369,6 +370,48 @@ namespace ManagementSystem
 
         }
 
+        public string checkRestockAmount(string quantity)
+        {
+            switch(quantity)
+            {
+                case "15":
+                    quantity = "0"; break;
+                case "14":
+                    quantity = "1"; break;
+                case "13":
+                    quantity = "2"; break;
+                case "12":
+                    quantity = "3"; break;
+                case "11":
+                    quantity = "4"; break;
+                case "10":
+                    quantity = "5"; break;
+                case "9":
+                    quantity = "6"; break;
+                case "8":
+                    quantity = "7"; break;
+                case "7":
+                    quantity = "8"; break;
+                case "6":
+                    quantity = "9"; break;
+                case "5":
+                    quantity = "10"; break;
+                case "4":
+                    quantity = "11"; break;
+                case "3":
+                    quantity = "12"; break;
+                case "2":
+                    quantity = "13"; break;
+                case "1":
+                    quantity = "14"; break;
+                case "0":
+                    quantity = "15"; break;
+
+            }
+
+
+            return quantity;
+        }
         private string ReadTextBoxValue(string textBoxName)
         {
             TextBox textBox = this.Controls.Find(textBoxName, true).FirstOrDefault() as TextBox;
